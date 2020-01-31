@@ -3,8 +3,8 @@
   "name": "carlosiriarte.com",
   "description": "My personal website.",
   "version": "1.0.1",
-  "author": "Carlos Iriarte <me@carlosiriarte.com>",
-  "license": "MIT",
+  "author": "Carlos Iriarte <me+website@carlosiriarte.com>",
+  "license": "UNLICENSED",
   "starter-name": "gatsby-starter-minimal-blog",
   "scripts": {
     "build": "gatsby build",
@@ -13,7 +13,8 @@
     "build:cypress": "cross-env CYPRESS_SUPPORT=y yarn build",
     "start": "gatsby develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d master"
   },
   "dependencies": {
     "@lekoarts/gatsby-theme-minimal-blog": "^2.0.1",
