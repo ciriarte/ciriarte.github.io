@@ -26,12 +26,12 @@ module.exports = {
         ],
         externalLinks: [
           {
-            name: `Github`,
-            url: `https://github.com/ciriarte`,
+            name: `Sourcehut`,
+            url: `https://git.sr.ht/~ciriarte/`,
           },
           {
-            name: `Instagram`,
-            url: `https://www.instagram.com/ciriarte/`,
+            name: `Github`,
+            url: `https://github.com/ciriarte`,
           },
         ],
       },
