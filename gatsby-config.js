@@ -23,6 +23,10 @@ module.exports = {
             title: `About`,
             slug: `/about`,
           },
+          {
+            title: `Scheduler`,
+            slug: `/projects/scheduler`
+          }
         ],
         externalLinks: [
           {
@@ -39,7 +43,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+        trackingId: 'UA-161624816-1',
       },
     },
     `gatsby-plugin-sitemap`,
@@ -69,6 +73,7 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-sass`,
     // `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 }
