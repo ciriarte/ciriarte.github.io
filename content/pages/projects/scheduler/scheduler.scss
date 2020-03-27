@@ -1,10 +1,10 @@
 // you must include each plugins' css
 // paths prefixed with ~ signify node_modules
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
-@import '~@fullcalendar/timegrid/main.css';
-@import '~@fullcalendar/timeline/main.css';
-@import '~@fullcalendar/resource-timeline/main.css';
+@import "~@fullcalendar/core/main.css";
+@import "~@fullcalendar/daygrid/main.css";
+@import "~@fullcalendar/timegrid/main.css";
+@import "~@fullcalendar/timeline/main.css";
+@import "~@fullcalendar/resource-timeline/main.css";
 
 // .scheduler-app {
 //   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
@@ -19,3 +19,19 @@
 //   margin: 0 auto;
 //   max-width: 900px;
 // }
+
+.scheduler-scenario {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1.25rem;
+  color: (--theme-ui-colors-text, #cbd5e0);
+}
+
+.scheduler-scenario .scheduler-resourceName {
+  border-bottom: solid 2px #555;
+}
+
+.scheduler-scenario .scheduler-resourceName:hover {
+  cursor: pointer;
+}

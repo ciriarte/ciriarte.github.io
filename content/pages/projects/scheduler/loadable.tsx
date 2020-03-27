@@ -1,12 +1,15 @@
-import React from "react"
-import Loadable from 'react-loadable';
+import React from "react";
+import loadable from '@loadable/component';
+
+const LoadableCalendar = loadable(() => import('./scheduler'))
+
+export default () => {
+  return (
+    <div>
+      <LoadableCalendar />
+    </div>
+  );
+};
 
 
-const LoadableCalendar = Loadable({
-    loader:()=>import('./scheduler'),
-    loading() {
-        return <div>Loading...</div>
-      }
-})
 
-export default () => <div><LoadableCalendar /></div>

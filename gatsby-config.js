@@ -8,7 +8,8 @@ module.exports = {
     siteTitleAlt: `Carlos Iriarte's Blog`,
     author: `@ciriarte`,
     siteUrl: `https://carlosiriarte.com`,
-    siteLanguage: `en`
+    siteLanguage: `en`,
+    siteDescription: `Mistakes in these writings are solely mine.`,
   },
   plugins: [
     {
@@ -50,9 +51,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `minimal-blog - @lekoarts/gatsby-theme-minimal-blog`,
-        short_name: `minimal-blog`,
-        description: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and code highlighting.`,
+        name: `Carlos Iriarte`,
+        short_name: `carlosiriarte.com`,
+        description: `Mistakes in these writings are solely mine.`,
         start_url: `/`,
         background_color: `#fff`,
         theme_color: `#6B46C1`,
@@ -71,7 +72,7 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-sass`,
     // `gatsby-plugin-webpack-bundle-analyser-v2`,
