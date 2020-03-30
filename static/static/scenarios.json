@@ -2,7 +2,7 @@
   "resources": [
     {
       "id": "a",
-      "name": "Alice",
+      "title": "Alice",
       "shift_requests": [
         [0, 0, 1],
         [0, 0, 0],
@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "name": "Bob",
+      "title": "Bob",
       "shift_requests": [
         [0, 0, 0],
         [0, 0, 0],
@@ -28,7 +28,7 @@
     },
     {
       "id": "c",
-      "name": "Chris",
+      "title": "Chris",
       "shift_requests": [
         [0, 1, 0],
         [0, 1, 0],
@@ -41,7 +41,7 @@
     },
     {
       "id": "d",
-      "name": "Daniela",
+      "title": "Daniela",
       "shift_requests": [
         [0, 0, 1],
         [0, 0, 0],
@@ -54,7 +54,7 @@
     },
     {
       "id": "e",
-      "name": "Edgar",
+      "title": "Edgar",
       "shift_requests": [
         [0, 0, 0],
         [0, 0, 1],

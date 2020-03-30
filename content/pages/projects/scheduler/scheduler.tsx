@@ -1,6 +1,5 @@
 import * as React from "react";
 import FullCalendar from "@fullcalendar/react";
-import { EventInput } from "@fullcalendar/core";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
@@ -9,158 +8,88 @@ import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import "./scheduler.scss";
 import { useEffect, useState } from "react";
 
-interface DemoAppState {
-  calendarWeekends: boolean;
-  calendarEvents: EventInput[];
-}
-
 interface DemoAppProps {
   scenario: { resources: any }
 }
 
-export class DemoApp extends React.Component<DemoAppProps, DemoAppState> {
-  calendarComponentRef = React.createRef<FullCalendar>();
+const eventsUrl = "https://qeca46csxd.execute-api.us-east-1.amazonaws.com/prod/scheduler";
 
-  constructor(props: DemoAppProps) {
-    super(props);
+const DemoApp: React.FunctionComponent<DemoAppProps> = (props) => {
+  const calendarComponentRef = React.createRef<FullCalendar>();
+  const [calendarWeekends, setCalendarWeekends] = useState(true);
+  const [calendarEvents, setCalendarEvents] = useState([
+    { title: "Event Now", start: new Date() },
+  ]);
 
-    this.state = {
-      calendarWeekends: true,
-      calendarEvents: [
-        // initial event data
-        { title: "Event Now", start: new Date() },
-      ],
-    };
-  }
+  const { scenario } = props;
 
-  render() {
-    return (
-        <div className="scheduler-app-calendar">
-          <FullCalendar
-            defaultView="resourceTimeGridDay"
-            header={{
-              left: "prev,next today",
-              center: "title",
-              right:
-                "resourceTimelGridThreeDays, resourceTimeGridDay, resourceTimelineWeek",
-            }}
-            plugins={[
-              timeGridPlugin,
-              interactionPlugin,
-              resourceTimeGridPlugin,
-              resourceTimelinePlugin,
-            ]}
-            ref={this.calendarComponentRef}
-            weekends={this.state.calendarWeekends}
-            dateClick={this.handleDateClick}
-            schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
-            resourceLabelText="Nurse Name"
-            nowIndicator={true}
-            views={{
-              resourceTimelGridThreeDays: {
-                type: "resourceTimeGrid",
-                duration: { days: 7 },
-                buttonText: "7 days",
-                titleFormat: { year: 'numeric', month: 'numeric', day: "numeric" }
-              },
-            }}
-            resources={[
-              { id: "a", title: "Alice" },
-              { id: "b", title: "Bob" },
-              { id: "c", title: "Chris" },
-              { id: "d", title: "Daniela" },
-              { id: "f", title: "Edgar" },
-            ]}
-            events={
-              "https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline"
-            }
-          />
-        </div>
-    );
-  }
+  const [hasError, setErrors] = useState(false);
+  const [events, setEvents] = useState([] as any);
+  //const [dateRange, setDateRange] = useState({ startStr: toIso8601String(normalizedDate()) } as any);
+  const [dateRange, setDateRange] = useState({ startStr: toIso8601String(normalizedDate()) } as any);
 
-  toggleWeekends = () => {
-    this.setState({
-      // update a property
-      calendarWeekends: !this.state.calendarWeekends,
+  const fetchEvents = async () => {
+    const res = await fetch(eventsUrl, {
+      method: 'POST',
+      body: JSON.stringify(
+        {...scenario, ...dateRange}
+      ),
+      headers: {
+        'Content-Type': 'application/json'
+      },
     });
-  };
+    res.json()
+       .then(j => setEvents(j.shifts))
+       .catch(err => setErrors(err));
+  }
 
-  handleDateClick = (arg: any) => {
-    if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
-      this.setState({
-        // add new event data
-        calendarEvents: this.state.calendarEvents.concat({
-          // creates a new array
-          title: "New Event",
-          start: arg.date,
-          allDay: arg.allDay,
-        }),
-      });
-    }
+  useEffect(() => {
+    fetchEvents()
+  }, [])
 
-    const data = {
-      num_nurses: 5,
-      num_shifts: 3,
-      num_days: 7,
-      // nurse 'n' works shift 's' on day 'd'.
-      shift_requests: [
-        [
-          [0, 0, 1],
-          [0, 0, 0],
-          [0, 0, 0],
-          [0, 0, 0],
-          [0, 0, 1],
-          [0, 1, 0],
-          [0, 0, 1],
-        ],
-        [
-          [0, 0, 0],
-          [0, 0, 0],
-          [0, 1, 0],
-          [0, 1, 0],
-          [1, 0, 0],
-          [0, 0, 0],
-          [0, 0, 1],
-        ],
-        [
-          [0, 1, 0],
-          [0, 1, 0],
-          [0, 0, 0],
-          [1, 0, 0],
-          [0, 0, 0],
-          [0, 1, 0],
-          [0, 0, 0],
-        ],
-        [
-          [0, 0, 1],
-          [0, 0, 0],
-          [1, 0, 0],
-          [0, 1, 0],
-          [0, 0, 0],
-          [1, 0, 0],
-          [0, 0, 0],
-        ],
-        [
-          [0, 0, 0],
-          [0, 0, 1],
-          [0, 1, 0],
-          [0, 0, 0],
-          [1, 0, 0],
-          [0, 1, 0],
-          [0, 0, 0],
-        ],
-      ],
-    };
+  if (!events || hasError) {
+    return <div>Loading...</div>
+  }
 
-    const url =
-      "https://p9ipn9wfsj.execute-api.us-east-1.amazonaws.com/prod/scheduler";
+  console.log(events)
 
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(data),
-    }).then(console.log);
-  };
+  return (
+      <div className="scheduler-app-calendar">
+        <FullCalendar
+          timeZone='UTC'
+          defaultDate={normalizedDate()}
+          defaultView="resourceTimelGridThreeDays"
+          header={{
+            left: "prev,next today",
+            center: "title",
+            right:
+              "resourceTimelGridThreeDays, resourceTimeGridDay, resourceTimelineWeek",
+          }}
+          plugins={[
+            timeGridPlugin,
+            interactionPlugin,
+            resourceTimeGridPlugin,
+            resourceTimelinePlugin,
+          ]}
+          ref={calendarComponentRef}
+          weekends={calendarWeekends}
+          schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+          resourceLabelText="Nurse Name"
+          nowIndicator={true}
+          views={{
+            resourceTimelGridThreeDays: {
+              type: "resourceTimeGrid",
+              duration: { days: 3 },
+              buttonText: "3 days",
+              titleFormat: { year: 'numeric', month: 'numeric', day: "numeric" }
+            },
+          }}
+          resources={scenario.resources}
+          events={events}
+        />
+      </div>
+  );
+
 }
 
 
@@ -190,7 +119,7 @@ const Scenario: React.FunctionComponent = (props) => {
           {scenario.resources.map((r: any, i: number) => {
             return (
               <span  key={`r${i}`}>
-                <Resource name={r.name} />
+                <Resource name={r.title} />
                 {i < scenario.resources.length - 2 ? ", " : " and "}
               </span>
             )
@@ -208,7 +137,7 @@ const Scenario: React.FunctionComponent = (props) => {
                 .map((s: string, k: number) => {
                   return req[k] === 1 ? (
                   <li key={`sr${i * 100 + j * 10 + k}`}>
-                    {r.name} would like to take {weekday[j]} {s} off.
+                    {r.title} would like to take {weekday[j]} {s} off.
                   </li>
                   ) : null
                 })
@@ -227,5 +156,32 @@ const Resource: React.FunctionComponent<{name: string}> = (props) => {
     <span className="scheduler-resourceName">{name}</span>
   )
 }
+
+const normalizedDate = () => {
+  let d = new Date()
+  d.setMilliseconds(0)
+  d.setSeconds(0)
+  d.setMinutes(0)
+  d.setHours(0)
+  return d
+}
+
+const toIso8601String = function(date) {
+  var tzo = 0,//-date.getTimezoneOffset(),
+      dif = tzo >= 0 ? '+' : '-',
+      pad = function(num) {
+          var norm = Math.floor(Math.abs(num));
+          return (norm < 10 ? '0' : '') + norm;
+      };
+  return date.getFullYear() +
+      '-' + pad(date.getMonth() + 1) +
+      '-' + pad(date.getDate()) +
+      'T' + pad(date.getHours()) +
+      ':' + pad(date.getMinutes()) +
+      ':' + pad(date.getSeconds()) +
+      dif + pad(tzo / 60) +
+      ':' + pad(tzo % 60);
+}
+
 
 export default Scenario;
