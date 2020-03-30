@@ -25,7 +25,6 @@ const DemoApp: React.FunctionComponent<DemoAppProps> = (props) => {
 
   const [hasError, setErrors] = useState(false);
   const [events, setEvents] = useState([] as any);
-  //const [dateRange, setDateRange] = useState({ startStr: toIso8601String(normalizedDate()) } as any);
   const [dateRange, setDateRange] = useState({ startStr: toIso8601String(normalizedDate()) } as any);
 
   const fetchEvents = async () => {
@@ -95,18 +94,18 @@ const DemoApp: React.FunctionComponent<DemoAppProps> = (props) => {
 
 const Scenario: React.FunctionComponent = (props) => {
   const [hasError, setErrors] = useState(false);
-  const [scenario, setScenario] = useState({} as { resources: any });
+  // const [scenario, setScenario] = useState({} as { resources: any });
 
-  const fetchResources = async () => {
-    const res = await fetch("/static/scenarios.json");
-    res.json()
-       .then(j => setScenario(j))
-       .catch(err => setErrors(err));
-  }
+  // const fetchResources = async () => {
+  //   const res = await fetch("/static/scenarios.json");
+  //   res.json()
+  //      .then(j => setScenario(j))
+  //      .catch(err => setErrors(err));
+  // }
 
-  useEffect(() => {
-    fetchResources()
-  }, [])
+  // useEffect(() => {
+  //   fetchResources()
+  // }, [])
 
   if (!scenario.resources || hasError) {
     return <div>Loading...</div>
@@ -120,7 +119,8 @@ const Scenario: React.FunctionComponent = (props) => {
             return (
               <span  key={`r${i}`}>
                 <Resource name={r.title} />
-                {i < scenario.resources.length - 2 ? ", " : " and "}
+                {i < scenario.resources.length - 2 ? ", " :
+                  i === scenario.resources.length - 2 ? " and " : "" }
               </span>
             )
           })} are nurses working in a clinic:
@@ -185,3 +185,73 @@ const toIso8601String = function(date) {
 
 
 export default Scenario;
+
+const scenario = {
+  "resources": [
+    {
+      "id": "a",
+      "title": "Alice",
+      "shift_requests": [
+        [0, 0, 1],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 1],
+        [0, 1, 0],
+        [0, 0, 1]
+      ]
+    },
+    {
+      "id": "b",
+      "title": "Bob",
+      "shift_requests": [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 1, 0],
+        [1, 0, 0],
+        [0, 0, 0],
+        [0, 0, 1]
+      ]
+    },
+    {
+      "id": "c",
+      "title": "Chris",
+      "shift_requests": [
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 0, 0],
+        [1, 0, 0],
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0]
+      ]
+    },
+    {
+      "id": "d",
+      "title": "Daniela",
+      "shift_requests": [
+        [0, 0, 1],
+        [0, 0, 0],
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0],
+        [1, 0, 0],
+        [0, 0, 0]
+      ]
+    },
+    {
+      "id": "e",
+      "title": "Edgar",
+      "shift_requests": [
+        [0, 0, 0],
+        [0, 0, 1],
+        [0, 1, 0],
+        [0, 0, 0],
+        [1, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0]
+      ]
+    }
+  ]
+}
