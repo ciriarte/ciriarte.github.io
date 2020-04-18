@@ -1,0 +1,90 @@
+---
+title: Learning Python | Setting up your development environment
+date: 2020-03-28
+description: Before you start. Boostraping your dev environment.
+tags:
+  - python
+  - learning
+---
+
+### Prerequisites
+
+This guide assumes you have a "recent enough" (3.7+) version of python installed on your machine, it
+also assumes you're using MacOS. We can add other configurations upon request.
+
+### Why do we need all these details?
+
+I want to address one of the most time consuming tasks when starting any new project: `bootstraping`.
+
+Bootstrapping means getting your project up and running, with all the tools you need to focus on your
+programming assignment. And let's start by addressing the elephant in the room, what's the number one
+tool you'll be using with your code? Your **text editor**.
+
+All major programming languages are primarily text based. There's exceptions but they are not in wide
+use so we'll ignore them for now.
+
+At the moment of this writing, my recommendation is to use visual studio code, of vscode for short.
+This editor is both simple to use and powerfull, and you can use it for other languages you're might
+look into learning next, like `javascript`, `html`, and `css`.
+
+### Setting up `brew` on `MacOS`
+
+Most operating systems come with package managers. Package managers' main function is to install
+software in your machine in a consistent way. The defacto standard in MacOS is [homebrew](https://brew.sh/).
+
+> Note: In doesn't matter the directory where you run these commands. They are smart enough to install themselves.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+### Setting up `vscode` using homebrew.
+
+```bash
+brew install visual-studio-code
+```
+
+[1] There's other programming languages, like [piet](https://www.dangermouse.net/esoteric/piet.html)
+or [scratch/blockly](https://developers.google.com/blockly/) that use visual constructs instead/in
+addition to text editors.
+
+### Let's make sure we're using the right version of python
+
+MacOS Catalina comes with python by default, but the version is a bit old , and some exercises use
+newer features. It will also get removed it future versions of MacOS. So it's a good idea to install
+our desired version.
+
+Let's install python 3.8 (the latest as of March 28th, 2020):
+
+> Note: From now on, it matters where we run these commands.
+
+```bash
+$ pipenv --python 3.8
+```
+
+Let's activate that version so we can start coding. We will need to do this step every time we come
+back to this folder.
+
+```bash
+$ pipenv shell
+```
+
+Let's check which version of python we have now:
+
+```bash
+$ python --version
+```
+
+You should see something like:
+
+```bash
+Python 3.8.0
+```
+
+You can now type
+
+```bash
+code .
+```
+
+and start creating your first program!
