@@ -58,7 +58,7 @@
   Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-tags-query-tsx-4444c4563fb60c9c5bf6.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/tags/page-data.json>; rel=preload; as=fetch; crossorigin
-/learning-python
+/learning-python-methods-vs-functions-vs-classes
   Link: </webpack-runtime-176a2e8264fc13430850.js>; rel=preload; as=script
   Link: </commons-72a04f2a21f9d95ff547.js>; rel=preload; as=script
   Link: </app-75765b0b23c6a62db9be.js>; rel=preload; as=script
@@ -66,7 +66,16 @@
   Link: </commons-72a04f2a21f9d95ff547.js>; rel=preload; as=script
   Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-38a9bf5fa1c9308f7dc1.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/learning-python/page-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/learning-python-methods-vs-functions-vs-classes/page-data.json>; rel=preload; as=fetch; crossorigin
+/learning-python-setting-up-your-development-environment
+  Link: </webpack-runtime-176a2e8264fc13430850.js>; rel=preload; as=script
+  Link: </commons-72a04f2a21f9d95ff547.js>; rel=preload; as=script
+  Link: </app-75765b0b23c6a62db9be.js>; rel=preload; as=script
+  Link: </styles-48cf7abb471f29d48864.js>; rel=preload; as=script
+  Link: </commons-72a04f2a21f9d95ff547.js>; rel=preload; as=script
+  Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-38a9bf5fa1c9308f7dc1.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/learning-python-setting-up-your-development-environment/page-data.json>; rel=preload; as=fetch; crossorigin
 /before-we-begin
   Link: </webpack-runtime-176a2e8264fc13430850.js>; rel=preload; as=script
   Link: </commons-72a04f2a21f9d95ff547.js>; rel=preload; as=script
