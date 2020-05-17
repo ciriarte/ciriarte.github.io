@@ -58,7 +58,7 @@
   Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-tags-query-tsx-ed6befea11125747be24.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/tags/page-data.json>; rel=preload; as=fetch; crossorigin
-/hijo-de-la-luna
+/hijo-de-la-luna-moons-child
   Link: </webpack-runtime-27e2cae7af8bd19a65f8.js>; rel=preload; as=script
   Link: </commons-d10ac521d248fca405c5.js>; rel=preload; as=script
   Link: </app-bb1a3e5bd1731adf5e40.js>; rel=preload; as=script
@@ -66,7 +66,7 @@
   Link: </commons-d10ac521d248fca405c5.js>; rel=preload; as=script
   Link: </component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-fce1fe6aa30820978ce2.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/hijo-de-la-luna/page-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/hijo-de-la-luna-moons-child/page-data.json>; rel=preload; as=fetch; crossorigin
 /learning-python-modules
   Link: </webpack-runtime-27e2cae7af8bd19a65f8.js>; rel=preload; as=script
   Link: </commons-d10ac521d248fca405c5.js>; rel=preload; as=script
