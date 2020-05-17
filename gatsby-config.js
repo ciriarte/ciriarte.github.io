@@ -75,6 +75,7 @@ module.exports = {
     // `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-sass`,
+    "gatsby-theme-waves",
     // `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 }
